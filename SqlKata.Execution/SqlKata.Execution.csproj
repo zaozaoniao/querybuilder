@@ -6,24 +6,24 @@
     <Description>Fork from SqlKata.Execution， Add General Odbc query capability</Description>
     <Authors>zaozaoniao</Authors>
     <Copyright></Copyright>
-    <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <RootNamespace>SqlKata</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Dapper-master\Dapper-master\Dapper\Dapper.csproj" />
     <ProjectReference Include="..\QueryBuilder\QueryBuilder.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.35" />
     <PackageReference Include="Humanizer.Core" Version="2.6.2" />
   </ItemGroup>
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <RepositoryUrl>https://github.com/zaozaoniao/querybuilder</RepositoryUrl>
     <PackageProjectUrl>https://github.com/zaozaoniao/querybuilder</PackageProjectUrl>
     <PackageReleaseNotes>https://github.com/zaozaoniao/querybuilder</PackageReleaseNotes>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>0.0.1</Version>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Version>2.0.2</Version>
     <Product>Fork from SqlKata.Execution</Product>
   </PropertyGroup>
 </Project>
