@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\QueryBuilder\QueryBuilder.csproj" />
     <ProjectReference Include="..\SqlKata.Execution\SqlKata.Execution.csproj" />
   </ItemGroup>
 

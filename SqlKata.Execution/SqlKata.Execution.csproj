@@ -1,11 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <PackageId>SqlKata.Execution</PackageId>
+    <PackageId>QueryBuilder.Extension</PackageId>
     <PackageTags>sql;query-builder;dynamic-query</PackageTags>
     <Title>SqlKata The C# Sql Query Builder</Title>
-    <Description>Adds the execution capabilities for SqlKata</Description>
-    <Authors>Ahmad Moussawi</Authors>
-    <Copyright>Copyright (c) 2017 Ahmad Moussawi</Copyright>
+    <Description>Fork from SqlKata.Execution， Add General Odbc query capability</Description>
+    <Authors>zaozaoniao</Authors>
+    <Copyright></Copyright>
     <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
     <RootNamespace>SqlKata</RootNamespace>
   </PropertyGroup>
@@ -18,5 +18,12 @@
   </ItemGroup>
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <RepositoryUrl>https://github.com/zaozaoniao/querybuilder</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/zaozaoniao/querybuilder</PackageProjectUrl>
+    <PackageReleaseNotes>https://github.com/zaozaoniao/querybuilder</PackageReleaseNotes>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Version>0.0.1</Version>
+    <Product>Fork from SqlKata.Execution</Product>
   </PropertyGroup>
 </Project>
