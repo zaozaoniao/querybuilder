@@ -14,6 +14,7 @@ using System.Data.SQLite;
 using static SqlKata.Expressions;
 using System.IO;
 using System.Data.Odbc;
+using Gridsum.Common.QueryIntegration;
 
 namespace Program
 {
@@ -35,7 +36,7 @@ namespace Program
 
         static void Main(string[] args)
         {
-            ODBCQueryFactory1();
+          //  ODBCQueryFactory1();
             //ODBCQueryFactory2();
             //ODBCQueryFactory3();
             ODBCQueryFactory4();
@@ -95,14 +96,34 @@ namespace Program
             var connection = new OdbcConnection(
                 "Driver=Cloudera ODBC Driver for Impala;Host=10.201.82.170;Port=21050;Schema=eap_1"
             );
-
             var db = new QueryFactory(connection, compiler);
-            var query = db.Query("event_today").Where("s_event_name", "s_app_launch").GroupBy("s_event_name")
+
+            // CommonQuery传递的前端参数转换为 sql字段
+            var queryDto = new CommonQuery
+            {
+                Columns = new List<string> { "ss", "ss" },
+                GroupBys = new List<string> { "s_event_name" },
+
+            };
+
+            var query = db.Query("event_today").Where("s_event_name", "s_app_launch").OrWhere("s_event_name", "s_app_show").GroupBy("s_event_name")
                 .Select("s_event_name", "count(*) as CC");                       // .OrWhere("s_event_name", "s_page_show").
             var sql = compiler.Compile(query);
 
             // var res = db.Statement(sql.ToString());   // 这玩意返回的是受影响的行数，select 始终返回-1，我们不会更新数据库，所以这个方法我们不用。
-            var result = query.Get();
+            var result = query.Get<ResultEntity>();
+
+            foreach( var s  in result)
+            {
+                var ssss = s;
+
+            }
+
+            //var dr = new DataResult
+            //{
+            //    Headers = result.
+            //};
+
             db.Logger = rs =>
             {
                 Console.WriteLine(rs.ToString());
@@ -174,12 +195,12 @@ namespace Program
 
             var init_event = new Query("event_today")
                  .Select("s_final_user_id", "s_brand", "s_day")
-                 .Where("s_event_name", "s_app_launch");
+                 .Where("s_event_name", "s_app_launch").WhereBetween("s_day",20200520,20200526);
 
             var second_event = new Query("event_today")
                 .With("init_event", init_event) // now you can consider ActivePosts as a regular table in the database
                 .Join("init_event", "init_event.s_final_user_id", "event_today.s_final_user_id")
-                .Where("event_today.s_event_name", "s_app_show")
+                .Where("s_event_name", "s_app_show")
                 .GroupByRaw("s_final_user_id,intervalDays,s_brand")
                 .SelectRaw("event_today.s_final_user_id,event_today.s_brand,(event_today.s_day-init_event.s_day) as intervalDays");
 
@@ -191,7 +212,7 @@ namespace Program
             var sql = compiler.Compile(query);
 
             var ss = db.Select(sql.ToString());
-            // var result = query.Get();
+            var result = query.Get();
 
             db.Logger = rs =>
             {

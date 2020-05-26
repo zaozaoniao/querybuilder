@@ -10,10 +10,10 @@
     <RootNamespace>SqlKata</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Dapper-master\Dapper-master\Dapper\Dapper.csproj" />
     <ProjectReference Include="..\QueryBuilder\QueryBuilder.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Dapper" Version="2.0.35" />
     <PackageReference Include="Humanizer.Core" Version="2.6.2" />
   </ItemGroup>
   <PropertyGroup>

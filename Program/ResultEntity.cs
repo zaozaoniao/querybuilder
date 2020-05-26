@@ -7,6 +7,6 @@ namespace Program
     public class ResultEntity
     {
         public string S_event_name { get; set; }
-        public long CX { get; set; }
+        public long CC { get; set; }
     }
 }
